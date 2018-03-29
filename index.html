@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tasks List</title>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controller.js"></script>
+
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="scss/style.css">
+
+</head>
+
+<body>
+
+<div ng-app="tasks-list" ng-controller="tasks-list-controller" class="container">
+  <div class="jumbotron">
+      <h1 class="text-center"><strong>What is need to be done?</strong></h1>
+  </div>
+
+<form ng-submit="addTodo()">
+ <div class="input-group input-group-lg">
+     <label for="inputTask"></label>
+     <input type="text" ng-model ="newTask" id="inputTask" class="form-control input-lg">
+     <span class="input-group-btn">
+     <button type="submit" class="btn btn-primary">Add a Task</button>
+         </span>
+ </div>
+
+    <br><br>
+
+     <div class="alert alert-primary alert-dismissible" role="alert" style="display: none">
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+         </button>
+        <strong>The input field cannot be empty!!!</strong>
+     </div>
+
+</form>
+
+
+<div id="taskList" class="list-group">
+      <div ng-repeat="task in taskList" class="list-group-item">
+          <label class="description" ng-class="{strike: task.done}">
+              <input type="checkbox" ng-model="task.done">
+              {{task.description}}
+          </label>
+          <button type="button" class="btn btn-danger" ng-click="deleteTodo($index)">Delete</button>
+      </div>
+  </div>
+    <br>
+
+    <div id="todo-count">
+        <h4>{{count}} items left</h4>
+    </div>
+</div>
+
+<footer class="container-fluid">
+    <h4 class="text-center">2018 Ventsislav Kostadinov SPA - HTML5, CSS3, SASS, JS, jQuery, AngularJS</h4>
+</footer>
+
+</body>
+</html>
